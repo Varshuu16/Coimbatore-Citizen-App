@@ -1,0 +1,108 @@
+<html>
+  <head>
+    <title>Add a Map Web Component with Events</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+
+    <link rel="stylesheet" type="text/css" href="Map.css" />
+    <script type="module" src="Map.js"></script>
+    <style>
+      .fixedButton{
+            position: fixed;
+            bottom: 0px;
+            right: 0px;  
+            padding: 50px;
+        }
+        .button {
+  background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 50%;
+  height: 150px;
+  width: 150px;
+  font-size: 100px;
+}
+
+    </style>
+  </head>
+  <body>
+    <gmp-map
+      id="marker-click-event-example"
+      center="11.0168,76.9558" 
+      zoom="12"
+      map-id="DEMO_MAP_ID"
+    >
+      <gmp-advanced-marker
+        position="11.0168,76.9558"
+        title="Coimbatore, TN"
+      ></gmp-advanced-marker>
+      <gmp-advanced-marker
+        position="10.9925,76.9614"
+        title="Peelamedu, Coimbatore"
+      ></gmp-advanced-marker>
+      <!-- Add more markers as needed -->
+    </gmp-map>
+
+    <!-- 
+      The `defer` attribute causes the callback to execute after the full HTML
+      document has been parsed. For non-blocking uses, avoiding race conditions,
+      and consistent behavior across browsers, consider loading using Promises.
+      See https://developers.google.com/maps/documentation/javascript/load-maps-js-api
+      for more information.
+      -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg&callback=initMap&libraries=marker&v=beta"
+      defer
+    ></script>
+    <div class="fixedButton">
+      <div class="roundedFixedBtn">
+        <button class="button">+</button>
+      </div>
+    </div>
+    <script>
+        (function(d, s, id) {
+            if (d.getElementById(id)) {
+                if (window.__TOMORROW__) {
+                    window.__TOMORROW__.renderWidget();
+                }
+                return;
+            }
+            const fjs = d.getElementsByTagName(s)[0];
+            const js = d.createElement(s);
+            js.id = id;
+            js.src = "https://www.tomorrow.io/v1/widget/sdk/sdk.bundle.min.js";
+
+            fjs.parentNode.insertBefore(js, fjs);
+        })(document, 'script', 'tomorrow-sdk');
+        </script>
+
+        <div class="tomorrow"
+           data-location-id="133950"
+           data-language="EN"
+           data-unit-system="METRIC"
+           data-skin="dark"
+           data-widget-type="upcoming"
+           style="padding-bottom:22px;position:relative;"
+        >
+          <a
+            href="https://www.tomorrow.io/weather-api/"
+            rel="nofollow noopener noreferrer"
+            target="_blank"
+            style="position: absolute; bottom: 0; transform: translateX(-50%); left: 50%;"
+          >
+            <img
+              alt="Powered by the Tomorrow.io Weather API"
+              src="https://weather-website-client.tomorrow.io/img/powered-by.svg"
+              width="250"
+              height="18"
+            />
+          </a>
+        </div>
+  </body>
+</html>
